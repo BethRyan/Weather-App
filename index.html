@@ -1,0 +1,174 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+    <title>CurrentWeather</title>
+    <link rel="stylesheet" href="src/style.css" />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP&display=swap"
+      rel="stylesheet"
+    />
+    <link
+      rel="stylesheet"
+      href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css"
+      integrity="sha384-9aIt2nRpC12Uk9gS9baDl411NQApFmC26EwAOH8WgZl5MYYxFfc+NcPb1dKGj7Sk"
+      crossorigin="anonymous"
+    />
+    <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
+  </head>
+
+  <body>
+    <div class="container">
+      <div class="searchbar">
+        <form id="search-bar">
+          <input
+            class="searchNewCity"
+            type="search"
+            placeholder="Search new city"
+            autofocus="on"
+            autocomplete="off"
+            id="search-input"
+          />
+
+          <input
+            class="searchButton"
+            type="submit"
+            value="Search"
+            id="search-button"
+          />
+          <i class="fas fa-search"></i>
+          <button id="current-location" style="float: right;">
+            Current Location
+          </button>
+        </form>
+      </div>
+
+      <div class="jumbotron">
+        <h1 class="display-4" id="city">Search a city</h1>
+        <hr class="my-3" />
+        <div class="row">
+          <div class="col-6">
+            <p class="lead">
+              <span id="current-temp"
+                >Currently
+                <span id="current-degrees"></span>
+              </span>
+              <a href="#" id="far">°F</a>
+              <a href="#" id="cel">°C</a>
+            </p>
+          </div>
+          <div class="col-6">
+            <p class="lead" id="date-time"></p>
+          </div>
+        </div>
+        <hr class="my-3" />
+        <div class="row">
+          <div class="col-6">
+            <p class="jumbotronBottom">
+              Condition: <span id="condition"></span>
+              <br />
+              Humidity: <span id="humidity"></span>
+              <br />
+              Wind: <span id="wind-speed"></span>
+            </p>
+          </div>
+          <div class="col-6">
+            <span class="feelsLike">Feels Like</span> <br />
+            <span class="feelsTemp"></span>
+          </div>
+        </div>
+      </div>
+
+      <div class="fiveDayHeader">
+        5 Day Forecast
+      </div>
+      <div class="forecast">
+        <div class="card-deck">
+          <div class="card">
+            <img
+              src="src/images/partlysunny.jpg"
+              class="card-img-top"
+              alt="partly sunny"
+              height="80px"
+            />
+            <div class="card-body">
+              <h5 class="card-title">THU</h5>
+              <p class="card-text">
+                76°
+              </p>
+            </div>
+          </div>
+          <div class="card">
+            <img
+              src="src/images/rain.jpg"
+              class="card-img-top"
+              alt="rain"
+              height="80px"
+            />
+            <div class="card-body">
+              <h5 class="card-title">FRI</h5>
+              <p class="card-text">
+                72°
+              </p>
+            </div>
+          </div>
+          <div class="card">
+            <img
+              src="src/images/cloudy.jpg"
+              class="card-img-top"
+              alt="cloudy"
+              height="80px"
+            />
+            <div class="card-body">
+              <h5 class="card-title">SAT</h5>
+              <p class="card-text">
+                73°
+              </p>
+            </div>
+          </div>
+          <div class="card">
+            <img
+              src="src/images/partlysunny.jpg"
+              class="card-img-top"
+              alt="partly sunny"
+              height="80px"
+            />
+            <div class="card-body">
+              <h5 class="card-title">SUN</h5>
+              <p class="card-text">
+                79°
+              </p>
+            </div>
+          </div>
+          <div class="card">
+            <img
+              src="src/images/sunnysky.jpg"
+              class="card-img-top"
+              alt="sunny"
+              height="80px"
+            />
+            <div class="card-body">
+              <h5 class="card-title">MON</h5>
+              <p class="card-text">
+                82°
+              </p>
+            </div>
+          </div>
+        </div>
+      </div>
+      <footer>
+        Coded by <a href="mailto:e.waylett@gmail.com">Beth Waylett</a>🐳
+        open-sourced on
+        <a href="https://github.com/BethRyan" target="_blank">GitHub</a> and
+        hosted on Netlify
+      </footer>
+      <script
+        src="https://kit.fontawesome.com/764bdaade1.js"
+        crossorigin="anonymous"
+      ></script>
+    </div>
+    <script src="src/index.js"></script>
+  </body>
+</html>
