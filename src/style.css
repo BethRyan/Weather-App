@@ -106,3 +106,6 @@ span#current-degrees {
 #current-location {
   display: inline;
 }
+#condition {
+  text-transform: capitalize;
+}

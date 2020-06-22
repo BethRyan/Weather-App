@@ -40,7 +40,7 @@ function searchInfo(response) {
   let humid = response.data.main.humidity;
   humidity.innerHTML = `${humid}%`;
   let condition = document.querySelector("#condition");
-  let weatherCondition = response.data.weather[0].main;
+  let weatherCondition = response.data.weather[0].description;
   condition.innerHTML = weatherCondition;
   let feelsLike = document.querySelector(".feelsTemp");
   let feels = Math.round(response.data.main.feels_like);
