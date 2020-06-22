@@ -19,13 +19,14 @@ let dayName = [
   "Friday",
   "Saturday",
 ];
-let day = dayName[now.getDay()];
-//let dateTimeOutput = document.querySelector("#date-time");
-let dayDisplay = document.querySelector("#day");
-let time = document.querySelector("#time");
-//dateTimeOutput.innerHTML = `${day} ${jsClock()}`;
-dayDisplay.innerHTML = day;
-time.innerHTML = jsClock();
+
+function updatedAt() {
+  let day = dayName[now.getDay()];
+  let dayDisplay = document.querySelector("#day");
+  let time = document.querySelector("#time");
+  dayDisplay.innerHTML = day;
+  time.innerHTML = jsClock();
+}
 
 //API FUNCTION
 function showTemperature(response) {
@@ -61,7 +62,7 @@ function showPosition(position) {
   let lon = position.coords.longitude;
   let apiKey = "419fb4560d921e7e18ca1ed3261fc38f";
   let url = `https://api.openweathermap.org/data/2.5/weather?lat=${lat}&lon=${lon}&appid=${apiKey}&units=imperial`;
-  axios.get(url).then(showTemperature);
+  axios.get(url).then(showTemperature).then(updatedAt);
 }
 function findCurrentLocation() {
   navigator.geolocation.getCurrentPosition(showPosition);
@@ -75,7 +76,7 @@ function searchCity(event) {
   let city = document.querySelector("#search-input");
   let apiKey = "419fb4560d921e7e18ca1ed3261fc38f";
   let url = `https://api.openweathermap.org/data/2.5/weather?q=${city.value}&appid=${apiKey}&units=imperial`;
-  axios.get(url).then(showTemperature);
+  axios.get(url).then(showTemperature).then(updatedAt);
 }
 let searchBar = document.querySelector("#search-bar");
 searchBar.addEventListener("submit", searchCity);
