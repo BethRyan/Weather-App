@@ -98,6 +98,12 @@ span.feelsTemp {
   font-weight: 900;
   text-shadow: 2px 2px 3px rgba(62, 114, 139, 0.51);
 }
+.footerLink {
+  color: rgba(0, 63, 69, 0.7);
+}
+.footerLink:hover {
+  color: #3e858b;
+}
 span#current-degrees {
   font-size: 35px;
   font-weight: 900;
