@@ -40,7 +40,7 @@
             id="search-button"
           />
           <i class="fas fa-search"></i>
-          <button id="current-location" style="float: right;">
+          <button id="currentloc-button" style="float: right;">
             Current Location
           </button>
         </form>
@@ -54,7 +54,7 @@
             <p class="lead">
               <span id="current-temp">
                 <img
-                  src="http://openweathermap.org/img/wn/01d@2x.png"
+                  src="https://openweathermap.org/img/wn/01d@2x.png"
                   alt=""
                   id="weather-icon"
                 />
@@ -65,7 +65,11 @@
             </p>
           </div>
           <div class="col-6">
-            <p class="lead" id="date-time"></p>
+            <p class="lead" id="date-time">
+              <div class="update">Updated at:</div>
+              <div id="day"></div>
+              <div id="time"></div>
+            </p>
           </div>
         </div>
         <hr class="my-3" />
@@ -93,7 +97,7 @@
         <div class="card-deck">
           <div class="card">
             <img
-              src="src/images/partlysunny.jpg"
+              src="src/images/fewclouds.jpg"
               class="card-img-top"
               alt="partly sunny"
               height="80px"
@@ -135,7 +139,7 @@
           </div>
           <div class="card">
             <img
-              src="src/images/partlysunny.jpg"
+              src="src/images/fewclouds.jpg"
               class="card-img-top"
               alt="partly sunny"
               height="80px"
@@ -149,7 +153,7 @@
           </div>
           <div class="card">
             <img
-              src="src/images/sunnysky.jpg"
+              src="src/images/clearsky.jpg"
               class="card-img-top"
               alt="sunny"
               height="80px"

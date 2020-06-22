@@ -20,8 +20,12 @@ let dayName = [
   "Saturday",
 ];
 let day = dayName[now.getDay()];
-let dateTimeOutput = document.querySelector("#date-time");
-dateTimeOutput.innerHTML = `${day} ${jsClock()}`;
+//let dateTimeOutput = document.querySelector("#date-time");
+let dayDisplay = document.querySelector("#day");
+let time = document.querySelector("#time");
+//dateTimeOutput.innerHTML = `${day} ${jsClock()}`;
+dayDisplay.innerHTML = day;
+time.innerHTML = jsClock();
 
 //API FUNCTION
 function showTemperature(response) {
@@ -62,7 +66,7 @@ function showPosition(position) {
 function findCurrentLocation() {
   navigator.geolocation.getCurrentPosition(showPosition);
 }
-let currentLocation = document.querySelector("#current-location");
+let currentLocation = document.querySelector("#currentloc-button");
 currentLocation.addEventListener("click", findCurrentLocation);
 
 //INPUT FROM SEARCH BAR

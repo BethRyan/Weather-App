@@ -62,7 +62,7 @@ div.searchbar {
   color: #3e728b;
 }
 input.searchButton,
-#current-location {
+#currentloc-button {
   border-radius: 5px;
   background-color: transparent;
   border: 1px solid #3e728b;
@@ -76,7 +76,7 @@ input.searchButton,
   font-weight: bold;
 }
 input.searchButton:hover,
-#current-location:hover {
+#currentloc-button:hover {
   background: #3e728b;
   color: #fff1eb;
   cursor: pointer;
@@ -109,7 +109,7 @@ span#current-degrees {
   font-weight: 900;
   text-shadow: 2px 2px 3px rgba(62, 114, 139, 0.51);
 }
-#current-location {
+#currentloc-button {
   display: inline;
 }
 #condition {
