@@ -30,25 +30,23 @@ function updatedAt() {
 
 //API FUNCTION
 function showTemperature(response) {
-  let showTemp = document.querySelector("#current-degrees");
-  let temperature = Math.round(response.data.main.temp);
-  let currentLocCity = response.data.name;
-  let cityHeader = document.querySelector("#city");
-  cityHeader.innerHTML = currentLocCity;
-  showTemp.innerHTML = temperature;
+  let currentTemp = document.querySelector("#current-degrees");
+  let currentCity = document.querySelector("#city");
   let windSpeed = document.querySelector("#wind-speed");
-  let wind = Math.round(response.data.wind.speed);
-  windSpeed.innerHTML = `${wind}mph`;
   let humidity = document.querySelector("#humidity");
-  let humid = response.data.main.humidity;
-  humidity.innerHTML = `${humid}%`;
-  let condition = document.querySelector("#condition");
-  let weatherCondition = response.data.weather[0].description;
-  condition.innerHTML = weatherCondition;
+  let description = document.querySelector("#condition");
   let feelsLike = document.querySelector(".feelsTemp");
-  let feels = Math.round(response.data.main.feels_like);
-  feelsLike.innerHTML = `${feels}°`;
   let weatherIcon = document.querySelector("#weather-icon");
+
+  farhrenheitTemperature = response.data.main.temp;
+  //alert(farhrenheitTemperature);
+
+  currentTemp.innerHTML = Math.round(farhrenheitTemperature);
+  currentCity.innerHTML = response.data.name;
+  windSpeed.innerHTML = `${Math.round(response.data.wind.speed)}mph`;
+  humidity.innerHTML = `${response.data.main.humidity}%`;
+  description.innerHTML = response.data.weather[0].description;
+  feelsLike.innerHTML = `${Math.round(response.data.main.feels_like)}°F`;
   weatherIcon.setAttribute(
     "src",
     `http://openweathermap.org/img/wn/${response.data.weather[0].icon}@2x.png`
@@ -82,10 +80,24 @@ let searchBar = document.querySelector("#search-bar");
 searchBar.addEventListener("submit", searchCity);
 
 //DEFAULT PAGE LOAD VIEW
-
 function defaultCity(city) {
   let apiKey = "419fb4560d921e7e18ca1ed3261fc38f";
   let url = `https://api.openweathermap.org/data/2.5/weather?q=${city}&appid=${apiKey}&units=imperial`;
   axios.get(url).then(showTemperature).then(updatedAt);
 }
+
+//UNIT CONVERSION
+function displayCelsiusTemp(event) {
+  event.preventDefault();
+  let celTemp = ((farhrenheitTemperature - 32) * 5) / 9;
+  //alert(roundCelTemp);
+  let celTempElement = document.querySelector("#current-degrees");
+  celTempElement.innerHTML = Math.round(celTemp);
+}
+
+let cel = document.querySelector("#cel");
+cel.addEventListener("click", displayCelsiusTemp);
+
+let farhrenheitTemperature = null;
+
 defaultCity("New York");
