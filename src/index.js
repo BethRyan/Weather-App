@@ -39,7 +39,6 @@ function showTemperature(response) {
   let weatherIcon = document.querySelector("#weather-icon");
 
   farhrenheitTemperature = response.data.main.temp;
-  //alert(farhrenheitTemperature);
 
   currentTemp.innerHTML = Math.round(farhrenheitTemperature);
   currentCity.innerHTML = response.data.name;
@@ -90,13 +89,21 @@ function defaultCity(city) {
 function displayCelsiusTemp(event) {
   event.preventDefault();
   let celTemp = ((farhrenheitTemperature - 32) * 5) / 9;
-  //alert(roundCelTemp);
   let celTempElement = document.querySelector("#current-degrees");
   celTempElement.innerHTML = Math.round(celTemp);
 }
 
-let cel = document.querySelector("#cel");
-cel.addEventListener("click", displayCelsiusTemp);
+function displayFarhenheitTemp(event) {
+  event.preventDefault();
+  let farTempElement = document.querySelector("#current-degrees");
+  farTempElement.innerHTML = Math.round(farhrenheitTemperature);
+}
+
+let celLink = document.querySelector("#cel");
+celLink.addEventListener("click", displayCelsiusTemp);
+
+let farLink = document.querySelector("#far");
+farLink.addEventListener("click", displayFarhenheitTemp);
 
 let farhrenheitTemperature = null;
 
