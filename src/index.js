@@ -80,3 +80,12 @@ function searchCity(event) {
 }
 let searchBar = document.querySelector("#search-bar");
 searchBar.addEventListener("submit", searchCity);
+
+//DEFAULT PAGE LOAD VIEW
+
+function defaultCity(city) {
+  let apiKey = "419fb4560d921e7e18ca1ed3261fc38f";
+  let url = `https://api.openweathermap.org/data/2.5/weather?q=${city}&appid=${apiKey}&units=imperial`;
+  axios.get(url).then(showTemperature).then(updatedAt);
+}
+defaultCity("New York");
