@@ -27,7 +27,8 @@ div.jumbotron {
 h1.display-4 {
   text-align: center;
   color: #3e728b;
-  text-shadow: 2px 2px 3px black;
+  font-weight: 900;
+  text-shadow: 2px 2px 3px rgba(62, 114, 139, 0.51);
   margin: 0 auto;
 }
 div.row {
@@ -43,8 +44,8 @@ p.card-text {
 }
 div.fiveDayHeader {
   text-align: left;
-  color: #fff1eb;
-  text-shadow: 3px 3px 5px #003f45;
+  color: #3e728b;
+  text-shadow: 2px 2px 3px rgba(62, 114, 139, 0.51);
   font-size: 40px;
   padding-top: 15px;
 }
@@ -104,8 +105,8 @@ span.feelsTemp {
 .footerLink:hover {
   color: #3e858b;
 }
-span#current-degrees {
-  font-size: 35px;
+strong#current-degrees {
+  font-size: 55px;
   font-weight: 900;
   text-shadow: 2px 2px 3px rgba(62, 114, 139, 0.51);
 }
@@ -114,4 +115,12 @@ span#current-degrees {
 }
 #condition {
   text-transform: capitalize;
+}
+
+.currentTemp .active {
+  color: #3e858b;
+  cursor: default;
+}
+.currentTemp .active:hover {
+  text-decoration: none;
 }

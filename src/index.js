@@ -89,12 +89,18 @@ function defaultCity(city) {
 function displayCelsiusTemp(event) {
   event.preventDefault();
   let celTemp = ((farhrenheitTemperature - 32) * 5) / 9;
+  //remove the active class from Celsius and add to Farhenheit
+  celLink.classList.add("active");
+  farLink.classList.remove("active");
   let celTempElement = document.querySelector("#current-degrees");
   celTempElement.innerHTML = Math.round(celTemp);
 }
 
 function displayFarhenheitTemp(event) {
   event.preventDefault();
+  //remove active on Farhenheit and add to Cel
+  farLink.classList.add("active");
+  celLink.classList.remove("active");
   let farTempElement = document.querySelector("#current-degrees");
   farTempElement.innerHTML = Math.round(farhrenheitTemperature);
 }

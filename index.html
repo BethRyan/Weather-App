@@ -52,16 +52,21 @@
         <div class="row">
           <div class="col-6">
             <p class="lead">
-              <span id="current-temp">
-                <img
+              <div class="currentTemp">
+                  <img
                   src="https://openweathermap.org/img/wn/01d@2x.png"
                   alt=""
                   id="weather-icon"
-                />
-                <span id="current-degrees"></span>
-              </span>
-              <a href="#" id="far">°F</a>
-              <a href="#" id="cel">°C</a>
+                  class="float-left"
+                  />
+                    <div class="float-left">
+                      <strong id="current-degrees"></strong>
+                        <span class="units">
+                          <a href="#" id="far" class="active">°F</a> |
+                          <a href="#" id="cel">°C</a>
+                        </span>
+                    </div>
+              </div>
             </p>
           </div>
           <div class="col-6">
