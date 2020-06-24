@@ -1,5 +1,5 @@
 //CURRENT TIME AND DAY
-function jsClock() {
+function jumbotronClock() {
   let time = new Date();
   let hour = time.getHours();
   let minute = time.getMinutes();
@@ -20,16 +20,16 @@ let dayName = [
   "Saturday",
 ];
 
-function updatedAt() {
+function jumbotronTimeDate() {
   let day = dayName[now.getDay()];
   let dayDisplay = document.querySelector("#day");
   let time = document.querySelector("#time");
   dayDisplay.innerHTML = day;
-  time.innerHTML = jsClock();
+  time.innerHTML = jumbotronClock();
 }
 
-//API FUNCTION
-function showTemperature(response) {
+//API FUNCTION IN JUMBROTRON
+function displayJumbotron(response) {
   let currentTemp = document.querySelector("#current-degrees");
   let currentCity = document.querySelector("#city");
   let windSpeed = document.querySelector("#wind-speed");
@@ -53,33 +53,8 @@ function showTemperature(response) {
   weatherIcon.setAttribute("alt", response.data.weather[0].description);
 }
 
-//CURRENT LOCATION BUTTON
-function showPosition(position) {
-  let lat = position.coords.latitude;
-  let lon = position.coords.longitude;
-  let apiKey = "419fb4560d921e7e18ca1ed3261fc38f";
-  let url = `https://api.openweathermap.org/data/2.5/weather?lat=${lat}&lon=${lon}&appid=${apiKey}&units=imperial`;
-  axios.get(url).then(showTemperature).then(updatedAt);
-}
-function findCurrentLocation() {
-  navigator.geolocation.getCurrentPosition(showPosition);
-}
-let currentLocation = document.querySelector("#currentloc-button");
-currentLocation.addEventListener("click", findCurrentLocation);
-
-//INPUT FROM SEARCH BAR
-function searchCity(event) {
-  event.preventDefault();
-  let city = document.querySelector("#search-input");
-  let apiKey = "419fb4560d921e7e18ca1ed3261fc38f";
-  let url = `https://api.openweathermap.org/data/2.5/weather?q=${city.value}&appid=${apiKey}&units=imperial`;
-  axios.get(url).then(showTemperature).then(updatedAt);
-}
-let searchBar = document.querySelector("#search-bar");
-searchBar.addEventListener("submit", searchCity);
-
-//DEFAULT PAGE LOAD VIEW
-function showForecast(response) {
+//API FUNCTION FORECAST ROW
+function displayForecast(response) {
   let forecastElement = document.querySelector("#forecast");
   let forecast = response.data.list[0];
   console.log(forecast);
@@ -100,20 +75,45 @@ function showForecast(response) {
   </div>`;
 }
 
+//CURRENT LOCATION BUTTON
+function displayCoordTemp(position) {
+  let lat = position.coords.latitude;
+  let lon = position.coords.longitude;
+  let apiKey = "419fb4560d921e7e18ca1ed3261fc38f";
+  let url = `https://api.openweathermap.org/data/2.5/weather?lat=${lat}&lon=${lon}&appid=${apiKey}&units=imperial`;
+  axios.get(url).then(displayJumbotron).then(jumbotronTimeDate);
+}
+function findCoords() {
+  navigator.geolocation.getCurrentPosition(displayCoordTemp);
+}
+let currentLocation = document.querySelector("#currentloc-button");
+currentLocation.addEventListener("click", findCoords);
+
+//INPUT FROM SEARCH BAR
+function displaySearchTemp(event) {
+  event.preventDefault();
+  let city = document.querySelector("#search-input");
+  let apiKey = "419fb4560d921e7e18ca1ed3261fc38f";
+  let url = `https://api.openweathermap.org/data/2.5/weather?q=${city.value}&appid=${apiKey}&units=imperial`;
+  axios.get(url).then(displayJumbotron).then(jumbotronTimeDate);
+}
+let searchBar = document.querySelector("#search-bar");
+searchBar.addEventListener("submit", displaySearchTemp);
+
+//DEFAULT PAGE LOAD VIEW
 function defaultCity(city) {
   let apiKey = "419fb4560d921e7e18ca1ed3261fc38f";
   let url = `https://api.openweathermap.org/data/2.5/weather?q=${city}&appid=${apiKey}&units=imperial`;
-  axios.get(url).then(showTemperature).then(updatedAt);
+  axios.get(url).then(displayJumbotron).then(jumbotronTimeDate);
 
   url = `https://api.openweathermap.org/data/2.5/forecast?q=${city},us&appid=${apiKey}&units=imperial`;
-  axios.get(url).then(showForecast).then(updatedAt);
+  axios.get(url).then(displayForecast);
 }
 
 //UNIT CONVERSION
 function displayCelsiusTemp(event) {
   event.preventDefault();
   let celTemp = ((farhrenheitTemperature - 32) * 5) / 9;
-  //remove the active class from Celsius and add to Farhenheit
   celLink.classList.add("active");
   farLink.classList.remove("active");
   let celTempElement = document.querySelector("#current-degrees");
@@ -122,7 +122,6 @@ function displayCelsiusTemp(event) {
 
 function displayFarhenheitTemp(event) {
   event.preventDefault();
-  //remove active on Farhenheit and add to Cel
   farLink.classList.add("active");
   celLink.classList.remove("active");
   let farTempElement = document.querySelector("#current-degrees");
