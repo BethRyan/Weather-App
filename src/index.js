@@ -79,10 +79,34 @@ let searchBar = document.querySelector("#search-bar");
 searchBar.addEventListener("submit", searchCity);
 
 //DEFAULT PAGE LOAD VIEW
+function showForecast(response) {
+  let forecastElement = document.querySelector("#forecast");
+  let forecast = response.data.list[0];
+  console.log(forecast);
+
+  forecastElement.innerHTML = `
+  <div class="col-3">
+    <h3>
+      12:00
+      </h3>
+    <img 
+    src="http://openweathermap.org/img/wn/${forecast.weather[0].icon}@2x.png"/>
+      <div class="forecast-temp">
+        <strong>${Math.round(forecast.main.temp_max)}°</strong>${Math.round(
+    forecast.main.temp_min
+  )}°
+            </div>
+        </div>
+  </div>`;
+}
+
 function defaultCity(city) {
   let apiKey = "419fb4560d921e7e18ca1ed3261fc38f";
   let url = `https://api.openweathermap.org/data/2.5/weather?q=${city}&appid=${apiKey}&units=imperial`;
   axios.get(url).then(showTemperature).then(updatedAt);
+
+  url = `https://api.openweathermap.org/data/2.5/forecast?q=${city},us&appid=${apiKey}&units=imperial`;
+  axios.get(url).then(showForecast).then(updatedAt);
 }
 
 //UNIT CONVERSION
