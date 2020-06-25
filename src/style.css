@@ -34,14 +34,20 @@ h1.display-4 {
 div.row {
   text-align: center;
 }
+div.card {
+  background: rgba(255, 255, 255, 0.33);
+  box-shadow: rgba(37, 39, 89, 0.5) 0px 2px 4px 0;
+  margin: 0 auto;
+}
 div.card-body {
   text-align: center;
-  padding: 15px;
+  padding: 5px;
   color: #3e858b;
 }
 p.card-text {
   font-size: 25px;
 }
+
 div.fiveDayHeader {
   text-align: left;
   color: #3e728b;
@@ -50,13 +56,10 @@ div.fiveDayHeader {
   padding-top: 15px;
 }
 
-div.forecast {
+div#forecast {
   margin: 10px 0 25px;
 }
-div.card {
-  background: rgba(255, 255, 255, 0.33);
-  box-shadow: rgba(37, 39, 89, 0.5) 0px 2px 4px 0;
-}
+
 div.searchbar {
   margin: 15px auto;
   display: block;

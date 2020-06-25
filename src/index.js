@@ -28,6 +28,18 @@ function jumbotronTimeDate() {
   time.innerHTML = jumbotronClock();
 }
 
+//TIME STAMP FOR FORCAST
+function formatHours(timestamp) {
+  let date = new Date(timestamp);
+  let hour = date.getHours();
+  let minute = date.getMinutes();
+  let temp = "" + (hour > 12 ? hour - 12 : hour);
+  if (hour === 0) temp = "12";
+  temp += (minute < 10 ? ":0" : ":") + minute;
+  temp += hour >= 12 ? " P.M." : " A.M.";
+  return temp;
+}
+
 //API FUNCTION IN JUMBROTRON
 function displayJumbotron(response) {
   let currentTemp = document.querySelector("#current-degrees");
@@ -56,23 +68,29 @@ function displayJumbotron(response) {
 //API FUNCTION FORECAST ROW
 function displayForecast(response) {
   let forecastElement = document.querySelector("#forecast");
-  let forecast = response.data.list[0];
-  console.log(forecast);
+  forecastElement.innerHTML = null;
+  let forecast = null;
 
-  forecastElement.innerHTML = `
-  <div class="col-3">
-    <h3>
-      12:00
-      </h3>
-    <img 
-    src="http://openweathermap.org/img/wn/${forecast.weather[0].icon}@2x.png"/>
-      <div class="forecast-temp">
-        <strong>${Math.round(forecast.main.temp_max)}°</strong>${Math.round(
-    forecast.main.temp_min
-  )}°
-            </div>
-        </div>
-  </div>`;
+  for (let index = 0; index < 6; index++) {
+    forecast = response.data.list[index];
+    forecastElement.innerHTML += `
+    <div class="col-2">
+        <h5>
+          ${formatHours(forecast.dt * 1000)}
+          </h5>
+        <img 
+          src="http://openweathermap.org/img/wn/${
+            forecast.weather[0].icon
+          }@2x.png"/>
+        <div class="forecast-temp">
+          <strong>
+            ${Math.round(forecast.main.temp_max)}°
+          </strong>
+          ${Math.round(forecast.main.temp_min)}° 
+      </div>
+    </div>
+    `;
+  }
 }
 
 //CURRENT LOCATION BUTTON
@@ -82,6 +100,9 @@ function displayCoordTemp(position) {
   let apiKey = "419fb4560d921e7e18ca1ed3261fc38f";
   let url = `https://api.openweathermap.org/data/2.5/weather?lat=${lat}&lon=${lon}&appid=${apiKey}&units=imperial`;
   axios.get(url).then(displayJumbotron).then(jumbotronTimeDate);
+
+  url = `https://api.openweathermap.org/data/2.5/forecast?lat=${lat}&lon=${lon}&appid=${apiKey}&units=imperial`;
+  axios.get(url).then(displayForecast);
 }
 function findCoords() {
   navigator.geolocation.getCurrentPosition(displayCoordTemp);
@@ -96,17 +117,20 @@ function displaySearchTemp(event) {
   let apiKey = "419fb4560d921e7e18ca1ed3261fc38f";
   let url = `https://api.openweathermap.org/data/2.5/weather?q=${city.value}&appid=${apiKey}&units=imperial`;
   axios.get(url).then(displayJumbotron).then(jumbotronTimeDate);
+
+  url = `https://api.openweathermap.org/data/2.5/forecast?q=${city.value}&appid=${apiKey}&units=imperial`;
+  axios.get(url).then(displayForecast);
 }
 let searchBar = document.querySelector("#search-bar");
 searchBar.addEventListener("submit", displaySearchTemp);
 
-//DEFAULT PAGE LOAD VIEW
+//DEFAULT CITY PAGE LOAD VIEW
 function defaultCity(city) {
   let apiKey = "419fb4560d921e7e18ca1ed3261fc38f";
   let url = `https://api.openweathermap.org/data/2.5/weather?q=${city}&appid=${apiKey}&units=imperial`;
   axios.get(url).then(displayJumbotron).then(jumbotronTimeDate);
 
-  url = `https://api.openweathermap.org/data/2.5/forecast?q=${city},us&appid=${apiKey}&units=imperial`;
+  url = `https://api.openweathermap.org/data/2.5/forecast?q=${city}&appid=${apiKey}&units=imperial`;
   axios.get(url).then(displayForecast);
 }
 
