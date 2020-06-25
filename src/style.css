@@ -57,7 +57,7 @@ div.fiveDayHeader {
 }
 
 div#forecast {
-  margin: 10px 0 25px;
+  margin: 25px 0 25px;
 }
 
 div.searchbar {
@@ -126,4 +126,8 @@ strong#current-degrees {
 }
 .currentTemp .active:hover {
   text-decoration: none;
+}
+div.forecast-temp,
+#forecast-hours {
+  color: #3e858b;
 }
