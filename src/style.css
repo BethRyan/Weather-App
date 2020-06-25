@@ -92,6 +92,9 @@ input.searchNewCity {
 footer {
   font-size: 14px;
   color: rgba(62, 114, 139, 0.51);
+  margin: 0 auto;
+  padding: 5px;
+  display: block;
 }
 
 span.feelsLike {
@@ -127,6 +130,7 @@ strong#current-degrees {
 .currentTemp .active:hover {
   text-decoration: none;
 }
+
 div.forecast-temp,
 #forecast-hours {
   color: #3e858b;
