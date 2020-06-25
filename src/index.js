@@ -33,8 +33,10 @@ function formatHours(timestamp) {
   let date = new Date(timestamp);
   let hour = date.getHours();
   let minute = date.getMinutes();
-  let temp = "" + (hour > 12 ? hour - 12 : hour);
-  if (hour === 0) temp = "12";
+  let temp = "" + (hour > 12 ? hour - 13 : hour - 1);
+  if (hour === 1) {
+    temp = "12";
+  }
   temp += (minute < 10 ? ":0" : ":") + minute;
   temp += hour >= 12 ? " P.M." : " A.M.";
   return temp;
@@ -116,6 +118,7 @@ function displaySearchTemp(event) {
   let city = document.querySelector("#search-input");
   let apiKey = "419fb4560d921e7e18ca1ed3261fc38f";
   let url = `https://api.openweathermap.org/data/2.5/weather?q=${city.value}&appid=${apiKey}&units=imperial`;
+
   axios.get(url).then(displayJumbotron).then(jumbotronTimeDate);
 
   url = `https://api.openweathermap.org/data/2.5/forecast?q=${city.value}&appid=${apiKey}&units=imperial`;
