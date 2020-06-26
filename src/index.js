@@ -37,6 +37,9 @@ function formatHours(timestamp) {
   if (hour === 1) {
     temp = "12";
   }
+  if (hour === 13) {
+    temp = "12";
+  }
   temp += (minute < 10 ? ":0" : ":") + minute;
   temp += hour >= 12 ? " P.M." : " A.M.";
   return temp;
