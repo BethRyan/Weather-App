@@ -19,7 +19,6 @@ let dayName = [
   "Friday",
   "Saturday",
 ];
-
 function jumbotronTimeDate() {
   let day = dayName[now.getDay()];
   let dayDisplay = document.querySelector("#day");
@@ -97,6 +96,18 @@ function displayForecast(response) {
     `;
   }
 }
+//A Button for my father, Tom, because he "doesn't let any device access his current location"
+function lilgeCircleCoords() {
+  let apiKey = "419fb4560d921e7e18ca1ed3261fc38f";
+  let url = `https://api.openweathermap.org/data/2.5/weather?lat=30.404017&lon=-86.834468&appid=${apiKey}&units=imperial`;
+  axios.get(url).then(displayJumbotron).then(jumbotronTimeDate);
+
+  url = `https://api.openweathermap.org/data/2.5/forecast?lat=30.404017&lon=-86.834468&appid=${apiKey}&units=imperial`;
+  axios.get(url).then(displayForecast);
+}
+
+let tomsButton = document.querySelector("#toms-image");
+tomsButton.addEventListener("click", lilgeCircleCoords);
 
 //CURRENT LOCATION BUTTON
 function displayCoordTemp(position) {
